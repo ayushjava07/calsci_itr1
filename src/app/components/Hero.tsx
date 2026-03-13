@@ -1,6 +1,10 @@
 import imgPchome from "@/assets/fh1.png";
+import { useState } from "react";
+import { WaitlistModal } from "./WaitlistModal";
 
 export function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section className="relative bg-[#F2F2F2] overflow-hidden flex flex-col items-center">
       <div className="relative w-full flex flex-col items-center pt-20 md:pt-28 pb-16 px-4">
@@ -42,6 +46,7 @@ export function Hero() {
           {/* CTA */}
           <div className="mt-8 flex justify-center">
             <button
+              onClick={() => setIsModalOpen(true)}
               className="
   px-10 py-4
   rounded-2xl
@@ -63,6 +68,7 @@ export function Hero() {
           </div>
         </div>
       </div>
+      <WaitlistModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

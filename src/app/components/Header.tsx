@@ -1,6 +1,7 @@
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
 import logo from "@/assets/app-header.png";
+import { WaitlistModal } from "./WaitlistModal";
 
 function Logo() {
   return (
@@ -22,6 +23,7 @@ function Logo() {
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navItems = ["How It Works", "Features", "FAQ's", "Pricing"];
 
@@ -56,7 +58,10 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <button className="flex items-center gap-2 bg-[#c55b00] hover:bg-[#a64d00] text-white px-7 py-2.5 rounded-full font-bold text-sm shadow-[0_4px_12px_rgba(197,91,0,0.25)] hover:scale-105 transition">
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-2 bg-[#c55b00] hover:bg-[#a64d00] text-white px-7 py-2.5 rounded-full font-bold text-sm shadow-[0_4px_12px_rgba(197,91,0,0.25)] hover:scale-105 transition"
+            >
               Get Yours Now
               <ShoppingBag size={18} />
             </button>
@@ -111,7 +116,13 @@ export function Header() {
             </div>
 
             {/* CTA */}
-            <button className="flex items-center justify-center gap-3 bg-[#c55b00] text-white px-6 py-4 rounded-xl font-bold text-base mt-8 shadow-lg">
+            <button 
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setIsModalOpen(true);
+              }}
+              className="flex items-center justify-center gap-3 bg-[#c55b00] text-white px-6 py-4 rounded-xl font-bold text-base mt-8 shadow-lg"
+            >
               Get Yours Now
               <ShoppingBag size={20} />
             </button>
@@ -138,6 +149,8 @@ export function Header() {
         }
         `}
       </style>
+
+      <WaitlistModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }
