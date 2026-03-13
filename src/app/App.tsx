@@ -8,11 +8,13 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#f2f2f2]">
       <Header />
-      <main>
+
+      <main className="max-w-7xl mx-auto px-4">
         <Hero />
         <AppsSection />
         <Newsletter />
       </main>
+
       <Footer />
     </div>
   );

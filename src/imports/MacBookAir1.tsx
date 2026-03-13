@@ -57,7 +57,7 @@ function MacBookAir1TrustTaglineBackgroundImage() {
   return (
     <div className="absolute contents left-[492px] top-[125px]">
       <div className="absolute bg-white border-2 border-[#c55b00] border-solid h-[35px] left-[492px] rounded-[14px] top-[125px] w-[282px]" />
-      <p className="-translate-x-1/2 absolute font-['Spline_Sans:Medium',sans-serif] font-medium leading-[normal] left-[643px] text-[20px] text-black text-center top-[130px] tracking-[-0.6px] whitespace-pre">{`Trusted By  2000 + Users`}</p>
+      {/* <p className="-translate-x-1/2 absolute font-['Spline_Sans:Medium',sans-serif] font-medium leading-[normal] left-[643px] text-[20px] text-black text-center top-[130px] tracking-[-0.6px] whitespace-pre">{`Trusted By  2000 + Users`}</p> */}
       <div className="absolute left-[505px] size-[25px] top-[130px]" data-name="eos-icons:trusted-organization">
         <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25 25">
           <g id="eos-icons:trusted-organization">
