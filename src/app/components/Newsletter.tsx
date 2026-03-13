@@ -11,7 +11,7 @@ export function Newsletter() {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="py-16 md:py-20 bg-[#f2f2f2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="relative rounded-[28px] md:rounded-[32px] p-12 md:p-14 lg:p-16 overflow-hidden shadow-2xl"
