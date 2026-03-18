@@ -19,7 +19,7 @@ export function AppsSection() {
           <div className="relative flex flex-col items-center">
             {/* Panda */}
             <CloudinaryImg
-              publicId="calcpanda_lqfnoo"
+              publicId="app-header_noczbw"
               variant="icon"
               alt="Panda mascot"
               className="
