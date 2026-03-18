@@ -1,6 +1,11 @@
-import imgPchome from "@/assets/fh1.png";
 import { useState } from "react";
-import { WaitlistModal } from "./WaitlistModal";
+import { lazy, Suspense } from "react";
+import { LoadingFallback } from "./LoadingFallback";
+import { CloudinaryImg } from "./CloudinaryImg";
+
+const WaitlistModal = lazy(() =>
+  import("./WaitlistModal").then((mod) => ({ default: mod.WaitlistModal }))
+);
 
 export function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,9 +15,13 @@ export function Hero() {
       <div className="relative w-full flex flex-col items-center pt-20 md:pt-28 pb-16 px-4">
         {/* HERO IMAGE */}
         <div className="relative z-10 w-full flex justify-center">
-          <img
-            src={imgPchome}
+          <CloudinaryImg
+            publicId="fh1_zx1vti"
+            variant="hero"
             alt="CalSci Device"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="
               w-[900px]
               sm:w-[1100px]
@@ -68,7 +77,14 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <WaitlistModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {isModalOpen ? (
+        <Suspense fallback={<LoadingFallback variant="modal" label="Loading..." />}>
+          <WaitlistModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </Suspense>
+      ) : null}
     </section>
   );
 }

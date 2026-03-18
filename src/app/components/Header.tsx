@@ -1,14 +1,20 @@
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
-import logo from "@/assets/app-header.png";
-import { WaitlistModal } from "./WaitlistModal";
+import { lazy, Suspense } from "react";
+import { LoadingFallback } from "./LoadingFallback";
+import { CloudinaryImg } from "./CloudinaryImg";
+
+const WaitlistModal = lazy(() =>
+  import("./WaitlistModal").then((mod) => ({ default: mod.WaitlistModal }))
+);
 
 function Logo() {
   return (
     <div className="flex items-center gap-2">
       <div className="relative bg-white border-2 border-[#c55b00] rounded-lg shadow-[0px_2px_4px_rgba(197,91,0,0.2)] size-10 flex items-center justify-center overflow-hidden">
-        <img
-          src={logo}
+        <CloudinaryImg
+          publicId="app-header_noczbw"
+          variant="icon"
           alt="CalSci Logo"
           className="w-full h-full object-cover scale-[1.8]"
         />
@@ -45,7 +51,7 @@ export function Header() {
             {navItems.map((item) => (
               <a
                 key={item}
-                href={`#${item
+                href={`/#${item
                   .toLowerCase()
                   .replace(/'/g, "")
                   .replace(/ /g, "-")}`}
@@ -103,7 +109,7 @@ export function Header() {
               {navItems.map((item) => (
                 <a
                   key={item}
-                  href={`#${item
+                  href={`/#${item
                     .toLowerCase()
                     .replace(/'/g, "")
                     .replace(/ /g, "-")}`}
@@ -150,7 +156,14 @@ export function Header() {
         `}
       </style>
 
-      <WaitlistModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {isModalOpen ? (
+        <Suspense fallback={<LoadingFallback variant="modal" label="Loading..." />}>
+          <WaitlistModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </Suspense>
+      ) : null}
     </>
   );
 }

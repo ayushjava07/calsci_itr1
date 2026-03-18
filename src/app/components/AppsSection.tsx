@@ -1,9 +1,4 @@
-import imgSingleCalsci4Feet11 from "@/assets/Appcalcul.png";
-import img89F4B9FeCdfd4754Ab830A0879B65E771 from "@/assets/calculator-panda.png";
-import imgGraphPanda from "@/assets/app graph.png";
-import imgChatPanda from "@/assets/chatapp-panda.png";
-import appspanda from "@/assets/apps-panda.png";
-import appheader from "@/assets/app-header.png";
+import { CloudinaryImg } from "./CloudinaryImg";
 
 function AppBadge({ title }: { title: string }) {
   return (
@@ -23,8 +18,9 @@ export function AppsSection() {
         <div className="flex flex-col items-center mb-12 md:mb-16 mt-8">
           <div className="relative flex flex-col items-center">
             {/* Panda */}
-            <img
-              src={img89F4B9FeCdfd4754Ab830A0879B65E771}
+            <CloudinaryImg
+              publicId="calcpanda_lqfnoo"
+              variant="icon"
               alt="Panda mascot"
               className="
         absolute
@@ -72,10 +68,11 @@ export function AppsSection() {
             </div>
             <div className="relative w-full lg:w-1/2 flex justify-center lg:justify-end">
               <div className="relative w-full max-w-[320px]  flex items-baseline-last oe">
-                <img
+                <CloudinaryImg
+                  publicId="Appcalcul_qybiay"
+                  variant="card"
                   alt="Calculator app interface"
                   className="w-full h-fit scale-150"
-                  src={imgSingleCalsci4Feet11}
                 />
               </div>
             </div>
@@ -97,8 +94,9 @@ export function AppsSection() {
             </p>
             <div className="relative flex justify-center mt-auto w-full">
               <div className="relative w-36 md:w-48">
-                <img
-                  src={imgGraphPanda}
+                <CloudinaryImg
+                  publicId="app_graph_cigenu"
+                  variant="card"
                   alt="Graph visualization"
                   className="w-full h-fit object-contain drop-shadow-sm"
                 />
@@ -118,10 +116,11 @@ export function AppsSection() {
             </p>
             <div className="relative flex justify-center mt-auto w-full">
               <div className="relative w-36 md:w-48">
-                <img
+                <CloudinaryImg
+                  publicId="chatapp-panda_uuwb7y"
+                  variant="card"
                   alt="AI assistant panda"
                   className="w-full h-fit object-contain drop-shadow-sm"
-                  src={imgChatPanda}
                 />
               </div>
             </div>
@@ -152,10 +151,11 @@ export function AppsSection() {
             </div>
             <div className="relative w-full lg:w-1/3 flex justify-center lg:justify-end">
               <div className="relative w-36 md:w-48">
-                <img
+                <CloudinaryImg
+                  publicId="app_own_qamxng"
+                  variant="card"
                   alt="Waving panda"
                   className="w-full h-auto object-contain drop-shadow-lg"
-                  src={appspanda}
                 />
               </div>
             </div>

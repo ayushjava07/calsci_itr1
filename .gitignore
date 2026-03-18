@@ -1,11 +1,14 @@
 # dependencies
-node_modules
+node_modules/
 .pnp
 .pnp.js
 
 # production build
-dist
+dist/
 build
+
+# vite caches
+.vite/
 
 # logs
 logs

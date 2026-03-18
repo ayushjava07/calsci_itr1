@@ -1,5 +1,6 @@
-import imgF60172Bc599F47918588E49899B841A21 from "@/assets/app-header.png";
 import { Instagram, Linkedin, Youtube } from "lucide-react";
+import { Link } from "react-router";
+import { CloudinaryImg } from "./CloudinaryImg";
 
 function XIcon({ size = 24 }: { size?: number }) {
   return (
@@ -13,10 +14,13 @@ function Logo() {
   return (
     <div className="flex items-center gap-2">
       <div className="relative bg-white border-2 border-[#c55b00] rounded-lg shadow-sm size-10 lg:size-11 flex items-center justify-center overflow-hidden">
-        <img
+        <CloudinaryImg
+          publicId="app-header_noczbw"
+          variant="icon"
           alt="CalSci Logo"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover scale-[1.8]"
-          src={imgF60172Bc599F47918588E49899B841A21}
         />
       </div>
       <span className="font-['Saira_Stencil_One',sans-serif] text-2xl lg:text-[26px] tracking-tight text-[#111212]">
@@ -98,7 +102,7 @@ export function Footer() {
               {footerLinks.features.map((link) => (
                 <li key={link.name}>
                   <a
-                    href={`#${link.name}`}
+                    href={`/#${link.name}`}
                     className="font-['Barlow',sans-serif] font-medium text-lg text-black/50 hover:text-[#c55b00] transition-colors"
                   >
                     {link.label}
@@ -117,7 +121,7 @@ export function Footer() {
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <a
-                    href={`#${link.name}`}
+                    href={`/#${link.name}`}
                     className="font-['Barlow',sans-serif] font-medium text-lg text-black/50 hover:text-[#c55b00] transition-colors"
                   >
                     {link.label}
@@ -135,12 +139,12 @@ export function Footer() {
             <ul className="space-y-4">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={`#${link.name}`}
+                  <Link
+                    to={`/${link.name}`}
                     className="font-['Barlow',sans-serif] font-medium text-lg text-black/50 hover:text-[#c55b00] transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

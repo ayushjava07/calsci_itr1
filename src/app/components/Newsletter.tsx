@@ -1,5 +1,5 @@
-import imgSubscriberPanda from "@/assets/subscriber-panda.png";
 import { useState } from "react";
+import { CloudinaryImg } from "./CloudinaryImg";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
@@ -130,9 +130,12 @@ export function Newsletter() {
             pointer-events-none
           "
           >
-            <img
+            <CloudinaryImg
+              publicId="subscriber-panda_roq4e9"
+              variant="card"
               alt="CalSci panda mascot"
-              src={imgSubscriberPanda}
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto object-contain drop-shadow-xl"
             />
           </div>
