@@ -36,8 +36,15 @@ function Logo() {
 
 export function Footer() {
   const footerLinks = {
-    product: [{ href: "/#features", label: "Features" }],
-    support: [{ href: "mailto:hello@calsci.com", label: "Contact" }],
+    product: [
+      { href: "/#features", label: "Features" },
+      { href: "/#pricing", label: "Pricing" },
+      { href: "/#how-it-works", label: "How It Works" },
+    ],
+    support: [
+      { href: "/#faqs", label: "FAQs" },
+      { href: "mailto:hello@calsci.com", label: "Contact" },
+    ],
     legal: [
       { to: "/privacy", label: "Privacy" },
       { to: "/terms", label: "Terms" },

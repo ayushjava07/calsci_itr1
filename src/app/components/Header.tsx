@@ -36,11 +36,25 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const navItems = [{ label: "Features", href: "/#features" }];
+  const navItems = [
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Features", href: "/#features" },
+    { label: "FAQs", href: "/#faqs" },
+    { label: "Pricing", href: "/#pricing" },
+  ];
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
   }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const handler = () => {
+      setMobileMenuOpen(false);
+      setIsModalOpen(true);
+    };
+    window.addEventListener("open-waitlist", handler);
+    return () => window.removeEventListener("open-waitlist", handler);
+  }, []);
 
   return (
     <>
