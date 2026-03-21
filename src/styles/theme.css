@@ -1,6 +1,13 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* CalSci brand */
+  --calsci-orange: #C55B00;
+  --calsci-orange-light: #FFBA7F;
+  --calsci-orange-hover: #A64D00;
+  --calsci-bg: #F5F5F5;
+  --calsci-text: #111212;
+  --calsci-text-muted: rgba(17, 18, 18, 0.7);
   --font-size: 16px;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);

@@ -11,7 +11,7 @@ const Footer = lazy(() =>
 
 export function RootLayout() {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
+    <div className="min-h-screen bg-[var(--calsci-bg)]">
       <ScrollToTop />
       <Header />
       <Outlet />

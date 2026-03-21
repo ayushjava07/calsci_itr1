@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { lazy, Suspense } from "react";
 import { LoadingFallback } from "./LoadingFallback";
 import { CloudinaryImg } from "./CloudinaryImg";
+import { Link } from "react-router";
 
 const WaitlistModal = lazy(() =>
   import("./WaitlistModal").then((mod) => ({ default: mod.WaitlistModal }))
@@ -10,20 +11,24 @@ const WaitlistModal = lazy(() =>
 
 function Logo() {
   return (
-    <div className="flex items-center gap-2">
-      <div className="relative bg-white border-2 border-[#c55b00] rounded-lg shadow-[0px_2px_4px_rgba(197,91,0,0.2)] size-10 flex items-center justify-center overflow-hidden">
+    <Link
+      to="/"
+      className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)] focus:ring-offset-2 rounded-lg"
+      aria-label="CalSci home"
+    >
+      <div className="relative bg-white border-2 border-[var(--calsci-orange)] rounded-lg shadow-sm size-9 flex items-center justify-center overflow-hidden">
         <CloudinaryImg
           publicId="app-header_noczbw"
           variant="icon"
-          alt="CalSci Logo"
+          alt=""
+          aria-hidden
           className="w-full h-full object-cover scale-[1.8]"
         />
       </div>
-
-      <span className="font-['Saira_Stencil_One'] text-xl md:text-2xl text-[#111212]">
+      <span className="font-['Saira_Stencil_One'] text-lg md:text-xl text-[var(--calsci-text)]">
         CALSCI
       </span>
-    </div>
+    </Link>
   );
 }
 
@@ -31,133 +36,115 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const navItems = ["How It Works", "Features", "FAQ's", "Pricing"];
+  const navItems = [{ label: "Features", href: "/#features" }];
 
-  /* lock scroll when menu open */
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
   }, [mobileMenuOpen]);
 
   return (
     <>
-      {/* HEADER */}
-      <header className="sticky top-0 z-50 bg-[#f8f9fa]/80 backdrop-blur-md border-b border-black/5">
+      <header
+        className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-black/5"
+        role="banner"
+      >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
-
           <Logo />
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center bg-black/5 rounded-full px-2 py-1.5 border border-white">
+          <nav
+            className="hidden md:flex items-center gap-1"
+            aria-label="Main navigation"
+          >
             {navItems.map((item) => (
               <a
-                key={item}
-                href={`/#${item
-                  .toLowerCase()
-                  .replace(/'/g, "")
-                  .replace(/ /g, "-")}`}
-                className="font-['Barlow'] px-5 py-1.5 text-sm lg:text-[15px] text-[#2d2d2d] hover:text-[#c55b00] rounded-full hover:bg-white/50 transition"
+                key={item.href}
+                href={item.href}
+                className="font-['Barlow',sans-serif] px-4 py-2 text-sm text-[var(--calsci-text-muted)] hover:text-[var(--calsci-orange)] rounded-lg hover:bg-black/[0.03] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)] focus:ring-inset"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <button 
+            <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 bg-[#c55b00] hover:bg-[#a64d00] text-white px-7 py-2.5 rounded-full font-bold text-sm shadow-[0_4px_12px_rgba(197,91,0,0.25)] hover:scale-105 transition"
+              className="flex items-center gap-2 bg-[var(--calsci-orange)] hover:bg-[var(--calsci-orange-hover)] text-white px-5 py-2.5 rounded-xl font-['Barlow',sans-serif] font-bold text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)] focus:ring-offset-2"
+              aria-label="Get early access"
             >
-              Get Yours Now
-              <ShoppingBag size={18} />
+              Get Early Access
+              <ShoppingBag size={16} aria-hidden />
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-[#c55b00]"
+            className="md:hidden p-2 text-[var(--calsci-orange)] hover:bg-black/5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)]"
             onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={mobileMenuOpen}
           >
-            <Menu size={28} />
+            <Menu size={24} aria-hidden />
           </button>
         </div>
       </header>
 
-      {/* MOBILE MENU OVERLAY */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] md:hidden">
-
-          {/* overlay background */}
+        <div
+          className="fixed inset-0 z-[100] md:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile menu"
+        >
           <div
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/20"
             onClick={() => setMobileMenuOpen(false)}
+            onKeyDown={(e) => e.key === "Escape" && setMobileMenuOpen(false)}
           />
-
-          {/* drawer */}
-          <div className="absolute top-0 left-0 w-full bg-[#f8f9fa] pt-6 pb-10 px-6 shadow-2xl animate-slide-down">
-
-            {/* top row */}
+          <div className="absolute top-0 left-0 w-full max-h-[90vh] overflow-auto bg-white pt-6 pb-10 px-6 shadow-xl">
             <div className="flex items-center justify-between mb-8">
               <Logo />
-              <button onClick={() => setMobileMenuOpen(false)}>
-                <X size={28} className="text-[#c55b00]" />
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 text-[var(--calsci-orange)] hover:bg-black/5 rounded-lg"
+                aria-label="Close menu"
+              >
+                <X size={24} aria-hidden />
               </button>
             </div>
-
-            {/* nav items */}
-            <div className="flex flex-col gap-6">
+            <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
               {navItems.map((item) => (
                 <a
-                  key={item}
-                  href={`/#${item
-                    .toLowerCase()
-                    .replace(/'/g, "")
-                    .replace(/ /g, "-")}`}
-                  className="text-lg text-[#2d2d2d] font-medium hover:text-[#c55b00]"
+                  key={item.href}
+                  href={item.href}
+                  className="font-['Barlow',sans-serif] py-3 text-base text-[var(--calsci-text)] font-medium hover:text-[var(--calsci-orange)]"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
-            </div>
-
-            {/* CTA */}
-            <button 
+            </nav>
+            <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 setIsModalOpen(true);
               }}
-              className="flex items-center justify-center gap-3 bg-[#c55b00] text-white px-6 py-4 rounded-xl font-bold text-base mt-8 shadow-lg"
+              className="flex items-center justify-center gap-2 w-full mt-6 bg-[var(--calsci-orange)] hover:bg-[var(--calsci-orange-hover)] text-white px-6 py-3.5 rounded-xl font-['Barlow',sans-serif] font-bold"
             >
-              Get Yours Now
-              <ShoppingBag size={20} />
+              Get Early Access
+              <ShoppingBag size={18} aria-hidden />
             </button>
           </div>
         </div>
       )}
 
-      {/* animation */}
-      <style>
-        {`
-        @keyframes slideDown {
-          from {
-            transform: translateY(-30px);
-            opacity:0;
-          }
-          to {
-            transform: translateY(0);
-            opacity:1;
-          }
-        }
-
-        .animate-slide-down {
-          animation: slideDown 0.25s ease-out;
-        }
-        `}
-      </style>
-
       {isModalOpen ? (
-        <Suspense fallback={<LoadingFallback variant="modal" label="Loading..." />}>
+        <Suspense
+          fallback={<LoadingFallback variant="modal" label="Loading..." />}
+        >
           <WaitlistModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}

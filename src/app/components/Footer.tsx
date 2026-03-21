@@ -4,7 +4,7 @@ import { CloudinaryImg } from "./CloudinaryImg";
 
 function XIcon({ size = 24 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
     </svg>
   );
@@ -12,98 +12,103 @@ function XIcon({ size = 24 }: { size?: number }) {
 
 function Logo() {
   return (
-    <div className="flex items-center gap-2">
-      <div className="relative bg-white border-2 border-[#c55b00] rounded-lg shadow-sm size-10 lg:size-11 flex items-center justify-center overflow-hidden">
+    <Link
+      to="/"
+      className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)] focus:ring-offset-2 rounded-lg w-fit"
+      aria-label="CalSci home"
+    >
+      <div className="relative bg-white border-2 border-[var(--calsci-orange)] rounded-lg shadow-sm size-10 flex items-center justify-center overflow-hidden">
         <CloudinaryImg
           publicId="app-header_noczbw"
           variant="icon"
-          alt="CalSci Logo"
+          alt=""
           loading="lazy"
           decoding="async"
           className="w-full h-full object-cover scale-[1.8]"
         />
       </div>
-      <span className="font-['Saira_Stencil_One',sans-serif] text-2xl lg:text-[26px] tracking-tight text-[#111212]">
+      <span className="font-['Saira_Stencil_One'] text-xl text-[var(--calsci-text)]">
         CALSCI
       </span>
-    </div>
+    </Link>
   );
 }
 
 export function Footer() {
   const footerLinks = {
-    features: [
-      { name: "pricing", label: "pricing" },
-      { name: "docs", label: "docs" },
-      { name: "simulator", label: "simulator" },
-    ],
-    support: [
-      { name: "faqs", label: "FAQ'S" },
-      { name: "contact", label: "contact" },
-      { name: "account", label: "account" },
-    ],
+    product: [{ href: "/#features", label: "Features" }],
+    support: [{ href: "mailto:hello@calsci.com", label: "Contact" }],
     legal: [
-      { name: "privacy", label: "privacy" },
-      { name: "terms", label: "terms of services" },
-      { name: "cookies", label: "cookies" },
+      { to: "/privacy", label: "Privacy" },
+      { to: "/terms", label: "Terms" },
+      { to: "/cookies", label: "Cookies" },
     ],
   };
 
   return (
-    <footer className="bg-white pt-24 pb-12 border-t border-black/[0.03]">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-16 items-start">
-          {/* Brand Section */}
-          <div className="lg:col-span-3 space-y-8 pr-4">
+    <footer
+      className="bg-white pt-20 pb-10 border-t border-black/5"
+      role="contentinfo"
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-16">
+          {/* Brand */}
+          <div className="lg:col-span-3 space-y-6">
             <Logo />
-            <p className="font-['Barlow',sans-serif] font-bold text-lg text-black/80 max-w-[280px]">
-              A Calculator That Talks to the Real World
+            <p className="font-['Barlow',sans-serif] font-medium text-base text-[var(--calsci-text-muted)] max-w-[280px]">
+              A programmable calculator with AI, graphing, and MicroPython.
             </p>
-
-            {/* Social Links */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               <a
-                href="#"
-                className="text-black/90 hover:text-[#c55b00] transition-colors"
+                href="https://www.instagram.com/vir.twirl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--calsci-text-muted)] hover:text-[var(--calsci-orange)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)] focus:ring-offset-2 rounded"
                 aria-label="Instagram"
               >
-                <Instagram size={28} strokeWidth={2} />
+                <Instagram size={22} strokeWidth={2} />
               </a>
               <a
-                href="#"
-                className="text-black/90 hover:text-[#c55b00] transition-colors"
+                href="https://www.youtube.com/@CalSci"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--calsci-text-muted)] hover:text-[var(--calsci-orange)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)] focus:ring-offset-2 rounded"
                 aria-label="YouTube"
               >
-                <Youtube size={28} strokeWidth={2} />
+                <Youtube size={22} strokeWidth={2} />
               </a>
               <a
-                href="#"
-                className="text-black/90 hover:text-[#c55b00] transition-colors"
+                href="https://x.com/virTwirl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--calsci-text-muted)] hover:text-[var(--calsci-orange)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)] focus:ring-offset-2 rounded"
                 aria-label="X (Twitter)"
               >
-                <XIcon size={24} />
+                <XIcon size={20} />
               </a>
               <a
-                href="#"
-                className="text-black/90 hover:text-[#c55b00] transition-colors"
+                href="https://www.linkedin.com/company/calsci-io/posts/?feedView=all"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--calsci-text-muted)] hover:text-[var(--calsci-orange)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--calsci-orange)] focus:ring-offset-2 rounded"
                 aria-label="LinkedIn"
               >
-                <Linkedin size={28} strokeWidth={2} />
+                <Linkedin size={22} strokeWidth={2} />
               </a>
             </div>
           </div>
 
-          {/* Features Links */}
-          <div className="space-y-6">
-            <h3 className="font-['Barlow',sans-serif] font-black text-[15px] uppercase tracking-wider text-black">
-              features
+          {/* Product Links */}
+          <div className="space-y-4">
+            <h3 className="font-['Barlow',sans-serif] font-bold text-sm uppercase tracking-wider text-[var(--calsci-text)]">
+              Product
             </h3>
-            <ul className="space-y-4">
-              {footerLinks.features.map((link) => (
-                <li key={link.name}>
+            <ul className="space-y-3">
+              {footerLinks.product.map((link) => (
+                <li key={link.href}>
                   <a
-                    href={`/#${link.name}`}
-                    className="font-['Barlow',sans-serif] font-medium text-lg text-black/50 hover:text-[#c55b00] transition-colors"
+                    href={link.href}
+                    className="font-['Barlow',sans-serif] font-medium text-sm text-[var(--calsci-text-muted)] hover:text-[var(--calsci-orange)] transition-colors"
                   >
                     {link.label}
                   </a>
@@ -113,16 +118,16 @@ export function Footer() {
           </div>
 
           {/* Support Links */}
-          <div className="space-y-6">
-            <h3 className="font-['Barlow',sans-serif] font-black text-[15px] uppercase tracking-wider text-black">
-              support
+          <div className="space-y-4">
+            <h3 className="font-['Barlow',sans-serif] font-bold text-sm uppercase tracking-wider text-[var(--calsci-text)]">
+              Support
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {footerLinks.support.map((link) => (
-                <li key={link.name}>
+                <li key={link.href}>
                   <a
-                    href={`/#${link.name}`}
-                    className="font-['Barlow',sans-serif] font-medium text-lg text-black/50 hover:text-[#c55b00] transition-colors"
+                    href={link.href}
+                    className="font-['Barlow',sans-serif] font-medium text-sm text-[var(--calsci-text-muted)] hover:text-[var(--calsci-orange)] transition-colors"
                   >
                     {link.label}
                   </a>
@@ -132,16 +137,16 @@ export function Footer() {
           </div>
 
           {/* Legal Links */}
-          <div className="space-y-6">
-            <h3 className="font-['Barlow',sans-serif] font-black text-[15px] uppercase tracking-wider text-black">
-              legal
+          <div className="space-y-4">
+            <h3 className="font-['Barlow',sans-serif] font-bold text-sm uppercase tracking-wider text-[var(--calsci-text)]">
+              Legal
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
-                <li key={link.name}>
+                <li key={link.to}>
                   <Link
-                    to={`/${link.name}`}
-                    className="font-['Barlow',sans-serif] font-medium text-lg text-black/50 hover:text-[#c55b00] transition-colors"
+                    to={link.to}
+                    className="font-['Barlow',sans-serif] font-medium text-sm text-[var(--calsci-text-muted)] hover:text-[var(--calsci-orange)] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -151,9 +156,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-24 pt-10 border-t border-black/[0.05] flex justify-center">
-          <p className="font-['Barlow',sans-serif] font-medium text-sm text-black/30">
+        <div className="mt-16 pt-8 border-t border-black/5 text-center">
+          <p className="font-['Barlow',sans-serif] font-medium text-sm text-[var(--calsci-text-muted)]">
             © {new Date().getFullYear()} CalSci. All rights reserved.
           </p>
         </div>

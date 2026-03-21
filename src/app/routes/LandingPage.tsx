@@ -12,7 +12,7 @@ const Newsletter = lazy(() =>
 
 export function LandingPage() {
   return (
-    <main className="max-w-7xl mx-auto px-4">
+    <main id="main-content" className="max-w-7xl mx-auto px-4" role="main">
       <Hero />
       <AppsSection />
       <LazyOnVisible rootMargin="800px" minHeightClassName="min-h-[520px]">
@@ -25,4 +25,3 @@ export function LandingPage() {
     </main>
   );
 }
-
